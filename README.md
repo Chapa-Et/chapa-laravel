@@ -49,20 +49,20 @@ The current features have been implemented
   POST https://api.chapa.co/v1/transaction/initialize
 ```
 
-| Parameter                    | Type     | Required | Description                                                                                                                                                                                         |
-| :--------------------------- | :------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `key`                        | `string` | **Yes**. | This will be your public key from Chapa. When on test mode use the test key, and when on live mode use the live key.                                                                                |
-| `email`                      | `string` | **No**. | A customer’s email. address.                                                                                                                                                                        |
-| `phone_number`                      | `numeric` | **No**. | A customer’s phone number. address.                                                                                                                                                                        |
-| `amount`                     | `string` | **Yes**. | The amount you will be charging your customer.                                                                                                                                                      |
-| `first_name`                 | `string` | **No**. | A customer’s first name.                                                                                                                                                                            |
-| `last_name`                  | `string` | **No**. | A customer’s last name.                                                                                                                                                                             |
-| `tx_ref`                     | `string` | **Yes**. | A unique reference given to each transaction.                                                                                                                                                       |
-| `callback_url`               | `string` | **No**. | Function that runs when payment is successful. This should ideally be a script that uses the verify endpoint on the Chapa API to check the status of the transaction.    |
-| `return_url`               | `string` | **No**. | A web address provided by the merchant to a payment gateway during payment integration. It serves as the destination where the payment gateway sends the customer after completing a payment transaction.                          |
-| `currency`                   | `string` | **Yes**. | The currency in which all the charges are made. Currency allowed is ETB.                                                                                                                            |
-| `customization[tiitle] `     | `string` | **No**.  | The customizations field (optional) allows you to customize the look and feel of the payment modal. You can set a logo, the store name to be displayed (title), and a description for the payment.. |
-| `customization[description]` | `string` | **No**.  | The customizations field (optional) allows you to customize the look and feel of the payment modal.                                                                                                 |
+| Parameter                    | Type      | Required | Description                                                                                                                                                                                               |
+| :--------------------------- | :-------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`                        | `string`  | **Yes**. | This will be your public key from Chapa. When on test mode use the test key, and when on live mode use the live key.                                                                                      |
+| `email`                      | `string`  | **No**.  | A customer’s email. address.                                                                                                                                                                              |
+| `phone_number`               | `numeric` | **No**.  | A customer’s phone number. address.                                                                                                                                                                       |
+| `amount`                     | `string`  | **Yes**. | The amount you will be charging your customer.                                                                                                                                                            |
+| `first_name`                 | `string`  | **No**.  | A customer’s first name.                                                                                                                                                                                  |
+| `last_name`                  | `string`  | **No**.  | A customer’s last name.                                                                                                                                                                                   |
+| `tx_ref`                     | `string`  | **Yes**. | A unique reference given to each transaction.                                                                                                                                                             |
+| `callback_url`               | `string`  | **No**.  | Function that runs when payment is successful. This should ideally be a script that uses the verify endpoint on the Chapa API to check the status of the transaction.                                     |
+| `return_url`                 | `string`  | **No**.  | A web address provided by the merchant to a payment gateway during payment integration. It serves as the destination where the payment gateway sends the customer after completing a payment transaction. |
+| `currency`                   | `string`  | **Yes**. | The currency in which all the charges are made. Currency allowed is ETB.                                                                                                                                  |
+| `customization[tiitle] `     | `string`  | **No**.  | The customizations field (optional) allows you to customize the look and feel of the payment modal. You can set a logo, the store name to be displayed (title), and a description for the payment..       |
+| `customization[description]` | `string`  | **No**.  | The customizations field (optional) allows you to customize the look and feel of the payment modal.                                                                                                       |
 
 ### Verify Payments
 
@@ -74,8 +74,6 @@ The current features have been implemented
 | :-------- | :------- | :------- | :------------------------------------------------------------------------------------------------------------------- |
 | `key`     | `string` | **Yes**. | This will be your public key from Chapa. When on test mode use the test key, and when on live mode use the live key. |
 
-
-
 ### Verify Transfers
 
 ```https
@@ -85,6 +83,12 @@ The current features have been implemented
 | Parameter | Type     | Required | Description                                                                                                          |
 | :-------- | :------- | :------- | :------------------------------------------------------------------------------------------------------------------- |
 | `key`     | `string` | **Yes**. | This will be your public key from Chapa. When on test mode use the test key, and when on live mode use the live key. |
+
+### List Banks
+
+```https
+  GET https://api.chapa.dev/v1/banks
+```
 
 ### Changelog
 
