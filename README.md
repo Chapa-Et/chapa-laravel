@@ -3,7 +3,7 @@
   <a href="http://chapa.co/" target="_blank">
     <img src="https://assets.chapa.co/assets/images/chapa-logo.svg" width="320" alt="Chapa Logo"/>
   </a>
-  <p align="center">Official Laravel package for Chapa's API (Laravel 5,6,7,9,10,11)</p>
+  <p align="center">Official Laravel package for Chapa's API (Laravel 5,6,7,9,10,11,12)</p>
 </div>
 </h1>
 
