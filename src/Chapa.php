@@ -22,18 +22,25 @@ class Chapa
     function __construct()
     {
 
-        $this->secretKey = env('CHAPA_SECRET_KEY');
+        $this->secretKey = config('chapa.secretKey');
         $this->baseUrl = 'https://api.chapa.co/v1';
 
     }
 
-    public static function generateReference(string $transactionPrefix = NULL)
+    public static function generateReference(?string $transactionPrefix = NULL)
     {
         if ($transactionPrefix) {
             return $transactionPrefix . '_' . uniqid(time());
         }
 
-        return env('APP_NAME') . '_' . 'chapa_' . uniqid(time());
+
+        // Fallback to app name (config or default)
+        $appName = config('app.name', 'Laravel');
+        $appName = trim($appName);
+        // Sanitize the app name to avoid invalid characters
+        $appName = preg_replace('/[^A-Za-z0-9_-]+/', '_', $appName);
+
+        return $appName . '_' . 'chapa_' . uniqid(time());
     }
 
     /**
@@ -92,12 +99,12 @@ class Chapa
         $data = Http::withToken($this->secretKey)->get($this->baseUrl . "/transaction/" . 'verify/' . $id)->json();
         return $data;
     }
+
     /**
      * Reaches out to Chapa to create a transfer to a bank account or wallet
      * @param $data
      * @return object
      */
-
     public function createTransfer(array $data)
     {
         $transfer = Http::withToken($this->secretKey)->post(
@@ -128,7 +135,7 @@ class Chapa
     public function validateWebhook($request)
     {
         $signature = $request->header('x-chapa-signature');
-        $expectedSignature = hash_hmac('sha256', $request->getContent(), env('CHAPA_WEBHOOK_SECRET'));
+        $expectedSignature = hash_hmac('sha256', $request->getContent(), config('chapa.webhookSecret'));
 
         if ($signature !== $expectedSignature) {
             return false;
