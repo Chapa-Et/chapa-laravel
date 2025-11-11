@@ -27,7 +27,7 @@ class ChapaServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravelchapa');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'chapa');
 
         // Register the main class to use with the facade
         $this->app->singleton('laravelchapa', function () {

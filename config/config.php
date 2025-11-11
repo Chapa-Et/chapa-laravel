@@ -17,4 +17,9 @@ return [
     'secretKey' => env('CHAPA_SECRET_KEY'),
 
 
+    /**
+     * Webhook Secret: Your Chapa webhook secret for validating incoming events.
+     */
+    'webhookSecret' => env('CHAPA_WEBHOOK_SECRET'),
+
 ];
