@@ -174,4 +174,39 @@ class Chapa
         return $response;
     }
 
+    /**
+     * Initiate a refund for a given transaction reference.
+     *
+     * @param  string  $txRef  Chapa transaction reference 
+     * @param  array   $data   Optional body: reason, amount, meta, reference
+     * @return array
+     */
+    public function refund(string $txRef, array $data = []): array
+    {
+        $response = Http::withToken($this->secretKey)->post(
+            $this->baseUrl . '/refund/' . $txRef,
+            $data
+        )->json();
+
+        return $response;
+    }
+    
+    /**
+     * Get your Chapa account balance.
+     *
+     * @param  string|null  $currency Optional currency code 
+     * @return array
+     */
+    public function getBalance(string $currency = null): array
+    {
+        $url = $this->baseUrl . '/balances';
+
+        if ($currency) {
+            $url .= '/' . strtolower($currency);
+        }
+
+        return Http::withToken($this->secretKey)
+            ->get($url)
+            ->json();
+    }
 }
